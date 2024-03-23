@@ -1,4 +1,4 @@
-# OCRopus 4 Inferece
+# OCRopus 4 Inference
 
 This package implements OCRopus 4 inference.
 

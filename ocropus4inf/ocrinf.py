@@ -252,7 +252,7 @@ def get_model(url):
     else:
         raise ValueError(f"unknown url scheme: {url}")
     
-def flatten_paramters(model):
+def flatten_parameters(model):
     for m in model.modules():
         if hasattr(m, "flatten_parameters"):
             m.flatten_parameters()
@@ -264,7 +264,7 @@ def load_model(path):
         import torch.jit
 
         model = torch.jit.load(path, map_location=torch.device("cpu"))
-        model = flatten_paramters(model)
+        model = flatten_parameters(model)
         return model
     elif path.endswith(".pth"):
         import torch
@@ -274,7 +274,7 @@ def load_model(path):
         model = models.make(mname, device="cpu")
         mdict = torch.load(path, map_location=torch.device("cpu"))
         model.load_state_dict(mdict)
-        model = flatten_paramters(model)
+        model = flatten_parameters(model)
         return model
     else:
         raise Exception("unknown model type: " + path)
